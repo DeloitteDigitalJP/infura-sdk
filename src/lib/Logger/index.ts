@@ -44,6 +44,13 @@ export enum ErrorLocation {
   ERC721MINTABLE_LOADCONTRACT = '[ERC721Mintable.loadContract]',
   ERC721MINTABLE_SET_CONTRACT_URI = '[ERC721Mintable.setContractURI]',
 
+  // ERC721MintableRoyaltyExtend
+  ERC721MINTABLEROYALTYEXTEND_DEPLOY = '[ERC721MintableRoyaltyExtend.deploy]',
+  ERC721MINTABLEROYALTYEXTEND_ADDGASPRICETOOPTIONS = '[ERC721MintableRoyaltyExtend.addGasPriceToOptions]',
+  ERC721MINTABLEROYALTYEXTEND_MINT = '[ERC721MintableRoyaltyExtend.mint]',
+  ERC721MINTABLEROYALTYEXTEND_LOADCONTRACT = '[ERC721MintableRoyaltyExtend.loadContract]',
+  ERC721MINTABLEROYALTYEXTEND_SET_CONTRACT_URI = '[ERC721MintableRoyaltyExtend.setContractURI]',
+
   // ERC721UserMintable
   ERC721USERMINTABLE_DEPLOY = '[ERC721UserMintable.deploy]',
   ERC721USERMINTABLE_ADDGASPRICETOOPTIONS = '[ERC721UserMintable.addGasPriceToOptions]',
@@ -92,6 +99,12 @@ export enum ErrorLocation {
   // HasRoyalty
   HASROYALTY_SETROYALTIES = '[HasRoyalty.setRoyalties]',
   HASROYALTY_ROYALTYINFO = '[HasRoyalty.royaltyInfo]',
+  // HasRoyaltyExtend
+  HASROYALTYEXTEND_SETDEFAULTROYALTY = '[HasRoyaltyExtend.setDefaultRoyalty]',
+  HASROYALTYEXTEND_DELETEDEFAULTROYALTY = '[HasRoyaltyExtend.deleteDefaultRoyalty]',
+  HASROYALTYEXTEND_SETTOKENROYALTY = '[HasRoyaltyExtend.setTokenRoyalty]',
+  HASROYALTYEXTEND_RESETTOKENROYALTY = '[HasRoyaltyExtend.resetTokenRoyalty]',
+  HASROYALTYEXTEND_ROYALTYINFO = '[HasRoyaltyExtend.royaltyInfo]',
 
   // SDK
   SDK_CONSTRUCTOR = '[SDK.constructor]',
