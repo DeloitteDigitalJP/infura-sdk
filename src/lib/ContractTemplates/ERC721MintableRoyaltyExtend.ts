@@ -1,6 +1,6 @@
 import { ethers } from 'ethers';
 import smartContractArtifact from './artifacts/ERC721MintableRoyaltyExtend';
-import { isURI, addGasPriceToOptions } from '../utils';
+import { isURI, addGasPriceToOptions, isDefined } from '../utils';
 import { Logger, log } from '../Logger';
 import { GAS_LIMIT, DEFAULT_ADMIN_ROLE, DEFAULT_MINTER_ROLE } from '../constants';
 import HasRoyalty from '../ContractComponents/hasRoyaltyExtend';
@@ -21,6 +21,14 @@ type ContractAddressOptions = {
 type MintOptions = {
   publicAddress: string;
   tokenURI: string;
+  gas?: string;
+};
+
+type MintWithRoyaltyOptions = {
+  publicAddress: string;
+  tokenURI: string;
+  royaltyAddress: string;
+  fee: number;
   gas?: string;
 };
 
@@ -186,6 +194,74 @@ export default class ERC721MintableRoyaltyExtend {
     } catch (error) {
       return log.throwError(Logger.message.ethers_error, Logger.code.NETWORK, {
         location: Logger.location.ERC721MINTABLEROYALTYEXTEND_MINT,
+        error,
+      });
+    }
+  }
+
+  /**
+   * Mint function: Mint a token for publicAddress with the tokenURI provided
+   * @param {object} params object containing all parameters
+   * @param {string} params.publicAddress destination address of the minted token
+   * @param {string} params.tokenURI link to the JSON object containing metadata about the token
+   * @notice Warning: This method will consume gas (120000 gas estimated)
+   * @returns {Promise<ethers.providers.TransactionResponse>} Transaction
+   */
+  async mintWithRoyalty(
+    params: MintWithRoyaltyOptions,
+  ): Promise<ethers.providers.TransactionResponse> {
+    if (!this.contractDeployed && !this.contractAddress) {
+      log.throwArgumentError(
+        Logger.message.contract_not_deployed,
+        'contractAddress',
+        this.contractAddress,
+        {
+          location: Logger.location.ERC721MINTABLEROYALTYEXTEND_MINTWITHROYALTY,
+        },
+      );
+    }
+
+    if (!params.publicAddress || !ethers.utils.isAddress(params.publicAddress)) {
+      log.throwMissingArgumentError(Logger.message.invalid_public_address, {
+        location: Logger.location.ERC721MINTABLEROYALTYEXTEND_MINTWITHROYALTY,
+      });
+    }
+
+    if (!params.tokenURI) {
+      log.throwMissingArgumentError(Logger.message.no_tokenURI_supplied, {
+        location: Logger.location.ERC721MINTABLEROYALTYEXTEND_MINTWITHROYALTY,
+      });
+    }
+
+    if (!params.royaltyAddress || !ethers.utils.isAddress(params.royaltyAddress)) {
+      log.throwMissingArgumentError(Logger.message.invalid_royalty_address, {
+        location: Logger.location.ERC721MINTABLEROYALTYEXTEND_MINTWITHROYALTY,
+      });
+    }
+
+    if (
+      !isDefined(params.fee) ||
+      !Number.isInteger(params.fee) ||
+      !(params.fee >= 0 && params.fee <= 10000)
+    ) {
+      log.throwArgumentError(Logger.message.fee_must_be_between_0_and_10000, 'fee', params.fee, {
+        location: Logger.location.ERC721MINTABLEROYALTYEXTEND_MINTWITHROYALTY,
+      });
+    }
+
+    /* eslint-disable no-console */
+    if (!isURI(params.tokenURI)) {
+      console.warn(Logger.message.warning_tokenURI);
+      console.warn(Logger.message.warning_tokenURI_tips);
+    }
+
+    try {
+      let options = { gasLimit: this.gasLimit };
+      options = addGasPriceToOptions(options, params.gas);
+      return this.contractDeployed.mintWithTokenURI(params.publicAddress, params.tokenURI, options);
+    } catch (error) {
+      return log.throwError(Logger.message.ethers_error, Logger.code.NETWORK, {
+        location: Logger.location.ERC721MINTABLEROYALTYEXTEND_MINTWITHROYALTY,
         error,
       });
     }

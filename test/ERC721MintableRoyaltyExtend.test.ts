@@ -205,6 +205,176 @@ describe('SDK', () => {
     expect(contractFactoryMock).toHaveBeenCalledTimes(1);
   });
 
+  it('[MintWithRoyalty] - should return an Error if contract is not deployed', () => {
+    eRC721MintableRoyaltyExtend = new ERC721MintableRoyaltyExtend(
+      signer as unknown as ethers.Wallet,
+    );
+
+    const myNFT = async () =>
+      eRC721MintableRoyaltyExtend.mintWithRoyalty({
+        publicAddress: ACCOUNT_ADDRESS,
+        tokenURI: 'https://infura.io/images/404.png',
+        royaltyAddress: ACCOUNT_ADDRESS_2,
+        fee: 100,
+      });
+    expect(myNFT).rejects.toThrow(
+      `Contract not deployed. (location="[ERC721MintableRoyaltyExtend.mintWithRoyalty]", argument="contractAddress", value=undefined, code=INVALID_ARGUMENT, version=${version})`,
+    );
+  });
+
+  it('[MintWithRoyalty] - should console.warn if tokenURI is not a link ', async () => {
+    eRC721MintableRoyaltyExtend = new ERC721MintableRoyaltyExtend(
+      signer as unknown as ethers.Wallet,
+    );
+    const logSpy = jest.spyOn(console, 'warn');
+
+    await eRC721MintableRoyaltyExtend.deploy({
+      name: 'name',
+      symbol: 'symbol',
+      contractURI: 'ipfs://URI',
+    });
+    await eRC721MintableRoyaltyExtend.mintWithRoyalty({
+      publicAddress: '0xE26a682fa90322eC48eB9F3FA66E8961D799177C',
+      tokenURI: 'URI',
+      royaltyAddress: ACCOUNT_ADDRESS_2,
+      fee: 100,
+    });
+
+    expect(logSpy).toHaveBeenCalledWith('WARNING: The supplied TokenURI is not a link.');
+    expect(logSpy).toHaveBeenCalledWith(
+      'WARNING: TokenURI should be a public link to a valid JSON metadata file',
+    );
+  });
+
+  it('[MintWithRoyalty] - should return an Error if the address is empty', () => {
+    eRC721MintableRoyaltyExtend = new ERC721MintableRoyaltyExtend(
+      signer as unknown as ethers.Wallet,
+    );
+
+    const myNFT = async () => {
+      await eRC721MintableRoyaltyExtend.deploy({
+        name: 'name',
+        symbol: 'symbol',
+        contractURI: 'URI',
+      });
+      await eRC721MintableRoyaltyExtend.mintWithRoyalty({
+        publicAddress: '',
+        tokenURI: 'https://infura.io/images/404.png',
+        royaltyAddress: ACCOUNT_ADDRESS_2,
+        fee: 100,
+      });
+    };
+    expect(myNFT).rejects.toThrow(
+      `missing argument: Invalid public address. (location="[ERC721MintableRoyaltyExtend.mintWithRoyalty]", code=MISSING_ARGUMENT, version=${version})`,
+    );
+  });
+
+  it('[MintWithRoyalty] - should return an Error if the tokenURI is empty', () => {
+    eRC721MintableRoyaltyExtend = new ERC721MintableRoyaltyExtend(
+      signer as unknown as ethers.Wallet,
+    );
+
+    const myNFT = async () => {
+      await eRC721MintableRoyaltyExtend.deploy({
+        name: 'name',
+        symbol: 'symbol',
+        contractURI: 'URI',
+      });
+      await eRC721MintableRoyaltyExtend.mintWithRoyalty({
+        publicAddress: '0xE26a682fa90322eC48eB9F3FA66E8961D799177C',
+        tokenURI: '',
+        royaltyAddress: ACCOUNT_ADDRESS_2,
+        fee: 100,
+      });
+    };
+    expect(myNFT).rejects.toThrow(
+      `missing argument: No tokenURI supplied. (location="[ERC721MintableRoyaltyExtend.mintWithRoyalty]", code=MISSING_ARGUMENT, version=${version})`,
+    );
+  });
+
+  it('[MintWithRoyalty] - should return an Error if the royalty address is empty', () => {
+    eRC721MintableRoyaltyExtend = new ERC721MintableRoyaltyExtend(
+      signer as unknown as ethers.Wallet,
+    );
+
+    const myNFT = async () => {
+      await eRC721MintableRoyaltyExtend.deploy({
+        name: 'name',
+        symbol: 'symbol',
+        contractURI: 'URI',
+      });
+      await eRC721MintableRoyaltyExtend.mintWithRoyalty({
+        publicAddress: '0xE26a682fa90322eC48eB9F3FA66E8961D799177C',
+        tokenURI: 'https://infura.io/images/404.png',
+        royaltyAddress: '',
+        fee: 100,
+      });
+    };
+    expect(myNFT).rejects.toThrow(
+      `missing argument: Invalid royalty address. (location="[ERC721MintableRoyaltyExtend.mintWithRoyalty]", code=MISSING_ARGUMENT, version=${version})`,
+    );
+  });
+
+  it('[MintWithRoyalty] - should return an Error if "fee" is not a number larger than or equal 0 and less than or equal 10000', () => {
+    eRC721MintableRoyaltyExtend = new ERC721MintableRoyaltyExtend(
+      signer as unknown as ethers.Wallet,
+    );
+
+    const myNFT1 = async () => {
+      await eRC721MintableRoyaltyExtend.deploy({
+        name: 'name',
+        symbol: 'symbol',
+        contractURI: 'URI',
+      });
+      await eRC721MintableRoyaltyExtend.mintWithRoyalty({
+        publicAddress: '0xE26a682fa90322eC48eB9F3FA66E8961D799177C',
+        tokenURI: 'https://infura.io/images/404.png',
+        royaltyAddress: ACCOUNT_ADDRESS_2,
+        fee: -1,
+      });
+    };
+    expect(myNFT1).rejects.toThrow(
+      `Fee must be between 0 and 10000. (location="[ERC721MintableRoyaltyExtend.mintWithRoyalty]", argument="fee", value=-1, code=INVALID_ARGUMENT, version=${version})`,
+    );
+
+    const myNFT2 = async () => {
+      await eRC721MintableRoyaltyExtend.deploy({
+        name: 'name',
+        symbol: 'symbol',
+        contractURI: 'URI',
+      });
+      await eRC721MintableRoyaltyExtend.mintWithRoyalty({
+        publicAddress: '0xE26a682fa90322eC48eB9F3FA66E8961D799177C',
+        tokenURI: 'https://infura.io/images/404.png',
+        royaltyAddress: ACCOUNT_ADDRESS_2,
+        fee: 10001,
+      });
+    };
+    expect(myNFT2).rejects.toThrow(
+      `Fee must be between 0 and 10000. (location="[ERC721MintableRoyaltyExtend.mintWithRoyalty]", argument="fee", value=10001, code=INVALID_ARGUMENT, version=${version})`,
+    );
+  });
+
+  it('[MintWithRoyalty] - should mint a token', async () => {
+    eRC721MintableRoyaltyExtend = new ERC721MintableRoyaltyExtend(
+      signer as unknown as ethers.Wallet,
+    );
+
+    await eRC721MintableRoyaltyExtend.deploy({
+      name: 'name',
+      symbol: 'symbol',
+      contractURI: 'URI',
+    });
+    await eRC721MintableRoyaltyExtend.mintWithRoyalty({
+      publicAddress: ACCOUNT_ADDRESS,
+      tokenURI: 'https://infura.io/images/404.png',
+      royaltyAddress: ACCOUNT_ADDRESS_2,
+      fee: 100,
+    });
+
+    expect(contractFactoryMock).toHaveBeenCalledTimes(1);
+  });
+
   it('[LoadContract] - should return an Error if contract is already deployed', () => {
     eRC721MintableRoyaltyExtend = new ERC721MintableRoyaltyExtend(
       signer as unknown as ethers.Wallet,

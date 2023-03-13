@@ -48,6 +48,7 @@ export enum ErrorLocation {
   ERC721MINTABLEROYALTYEXTEND_DEPLOY = '[ERC721MintableRoyaltyExtend.deploy]',
   ERC721MINTABLEROYALTYEXTEND_ADDGASPRICETOOPTIONS = '[ERC721MintableRoyaltyExtend.addGasPriceToOptions]',
   ERC721MINTABLEROYALTYEXTEND_MINT = '[ERC721MintableRoyaltyExtend.mint]',
+  ERC721MINTABLEROYALTYEXTEND_MINTWITHROYALTY = '[ERC721MintableRoyaltyExtend.mintWithRoyalty]',
   ERC721MINTABLEROYALTYEXTEND_LOADCONTRACT = '[ERC721MintableRoyaltyExtend.loadContract]',
   ERC721MINTABLEROYALTYEXTEND_SET_CONTRACT_URI = '[ERC721MintableRoyaltyExtend.setContractURI]',
 
@@ -165,6 +166,7 @@ export enum ErrorMessage {
   invalid_contract_address = 'Invalid contract address.',
   invalid_account_address = 'Invalid account address.',
   invalid_public_address = 'Invalid public address.',
+  invalid_royalty_address = 'Invalid royalty address.',
   invalid_from_address = 'Invalid "from" address.',
   invalid_to_address = 'Invalid "to" address.',
   invalid_contractURI = 'Invalid contractURI.',
