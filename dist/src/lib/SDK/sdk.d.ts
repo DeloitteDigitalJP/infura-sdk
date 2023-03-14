@@ -11,10 +11,12 @@ import {
   GetStatusOptions,
   LoadContractOptions,
 } from './types';
+import ERC721MintableRoyaltyExtend from '../ContractTemplates/ERC721MintableRoyaltyExtend';
 export declare const classes: {
   ERC721Mintable: typeof ERC721Mintable;
   ERC721UserMintable: typeof ERC721UserMintable;
   ERC1155Mintable: typeof ERC1155Mintable;
+  ERC721MintableRoyaltyExtend: typeof ERC721MintableRoyaltyExtend;
 };
 export declare class SDK {
   private readonly auth;

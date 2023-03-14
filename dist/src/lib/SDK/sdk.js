@@ -52,10 +52,12 @@ var utils_1 = require("../utils");
 var ERC1155Mintable_1 = __importDefault(require("../ContractTemplates/ERC1155Mintable"));
 var api_1 = __importDefault(require("../Api/api"));
 var availableChains_1 = require("../Auth/availableChains");
+var ERC721MintableRoyaltyExtend_1 = __importDefault(require("../ContractTemplates/ERC721MintableRoyaltyExtend"));
 exports.classes = {
     ERC721Mintable: ERC721Mintable_1.default,
     ERC721UserMintable: ERC721UserMintable_1.default,
     ERC1155Mintable: ERC1155Mintable_1.default,
+    ERC721MintableRoyaltyExtend: ERC721MintableRoyaltyExtend_1.default,
 };
 var SDK = /** @class */ (function () {
     function SDK(auth) {
