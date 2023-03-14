@@ -10,6 +10,7 @@ exports.TEMPLATES = {
     ERC721Mintable: 'ERC721Mintable',
     ERC721UserMintable: 'ERC721UserMintable',
     ERC1155Mintable: 'ERC1155Mintable',
+    ERC721MintableRoyaltyExtend: 'ERC721MintableRoyaltyExtend',
 };
 exports.GAS_LIMIT = 6000000;
 exports.DEFAULT_ADMIN_ROLE = '0x0000000000000000000000000000000000000000000000000000000000000000';

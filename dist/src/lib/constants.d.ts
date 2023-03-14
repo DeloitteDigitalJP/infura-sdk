@@ -3,6 +3,7 @@ export declare const TEMPLATES: {
   ERC721Mintable: string;
   ERC721UserMintable: string;
   ERC1155Mintable: string;
+  ERC721MintableRoyaltyExtend: string;
 };
 export declare const GAS_LIMIT = 6000000;
 export declare const DEFAULT_ADMIN_ROLE =
