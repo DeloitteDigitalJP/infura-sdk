@@ -6313,6 +6313,9 @@ declare const _default: {
       'mintWithTokenURI(address,string)': {
         notice: string;
       };
+      'mintWithTokenURIAndRoyalty(address,string,address,uint96)': {
+        notice: string;
+      };
       'resetTokenRoyalty(uint256)': {
         notice: string;
       };
