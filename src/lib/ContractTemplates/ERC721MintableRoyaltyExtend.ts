@@ -258,7 +258,13 @@ export default class ERC721MintableRoyaltyExtend {
     try {
       let options = { gasLimit: this.gasLimit };
       options = addGasPriceToOptions(options, params.gas);
-      return this.contractDeployed.mintWithTokenURI(params.publicAddress, params.tokenURI, options);
+      return this.contractDeployed.mintWithTokenURIAndRoyalty(
+        params.publicAddress,
+        params.tokenURI,
+        params.royaltyAddress,
+        params.fee,
+        options,
+      );
     } catch (error) {
       return log.throwError(Logger.message.ethers_error, Logger.code.NETWORK, {
         location: Logger.location.ERC721MINTABLEROYALTYEXTEND_MINTWITHROYALTY,

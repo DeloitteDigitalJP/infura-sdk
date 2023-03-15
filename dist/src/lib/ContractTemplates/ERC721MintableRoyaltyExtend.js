@@ -225,7 +225,7 @@ var ERC721MintableRoyaltyExtend = /** @class */ (function () {
                 try {
                     options = { gasLimit: this.gasLimit };
                     options = (0, utils_1.addGasPriceToOptions)(options, params.gas);
-                    return [2 /*return*/, this.contractDeployed.mintWithTokenURI(params.publicAddress, params.tokenURI, options)];
+                    return [2 /*return*/, this.contractDeployed.mintWithTokenURIAndRoyalty(params.publicAddress, params.tokenURI, params.royaltyAddress, params.fee, options)];
                 }
                 catch (error) {
                     return [2 /*return*/, Logger_1.log.throwError(Logger_1.Logger.message.ethers_error, Logger_1.Logger.code.NETWORK, {

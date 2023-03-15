@@ -14,6 +14,7 @@ describe('SDK', () => {
       ({
         deployed: () => ({
           mintWithTokenURI: jest.fn(),
+          mintWithTokenURIAndRoyalty: jest.fn(),
           'safeTransferFrom(address,address,uint256)': jest.fn(),
           setContractURI: jest.fn(),
           grantRole: jest.fn(),
