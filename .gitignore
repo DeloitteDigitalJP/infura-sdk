@@ -54,5 +54,4 @@ storage
 .idea
 .editorconfig
 storage
-dist
 test-report.html

@@ -1,6 +1,4 @@
-import version from '../../_version';
-
-export enum ErrorCode {
+export declare enum ErrorCode {
   NETWORK = '[NETWORK.ERROR]',
   IPFS = '[IPFS.ERROR]',
   RUNTIME = '[RUNTIME.ERROR]',
@@ -9,50 +7,32 @@ export enum ErrorCode {
   MISSING_ARGUMENT = 'MISSING_ARGUMENT',
   UNEXPECTED_ARGUMENT = 'UNEXPECTED_ARGUMENT',
 }
-
-export enum ErrorLocation {
-  // AUTH
+export declare enum ErrorLocation {
   AUTH_CONSTRUCTOR = '[Auth.constructor]',
   AUTH_SET_PROVIDER = '[Auth.setProvider]',
-
-  // CONTRACT FACTORY
   CONTRACTFACTORY_FACTORY = '[ContractFactory.factory]',
-
-  // PROVIDER
   PROVIDER_GETPROVIDER = '[Provider.getProvider]',
   PROVIDER_GETINJECTEDPROVIDER = '[Provider.getInjectedProvider]',
-
-  // SIGNER
   SIGNER_GETWALLET = '[Signer.getWallet]',
-
-  // HTTP SERVICE
   HTTPSERVICE_CONSTRUCTOR = '[httpService.constructor]',
   HTTPSERVICE_GET = '[httpService.get]',
   HTTPSERVICE_POST = '[httpService.post]',
-
-  // IPFS SERVICE
   IPFSSERVICE_CONSTRUCTOR = '[IPFS.constructor]',
   IPFSSERVICE_UPLOADFILE = '[IPFS.uploadFile]',
   IPFSSERVICE_UPLOADOBJECT = '[IPFS.uploadObject]',
   IPFSSERVICE_UPLOADDIRECTORY = '[IPFS.uploadDirectory]',
   IPFSSERVICE_UNPINFILE = '[IPFS.unPinFile]',
-
-  // ERC721Mintable
   ERC721MINTABLE_DEPLOY = '[ERC721Mintable.deploy]',
   ERC721MINTABLE_ADDGASPRICETOOPTIONS = '[ERC721Mintable.addGasPriceToOptions]',
   ERC721MINTABLE_MINT = '[ERC721Mintable.mint]',
   ERC721MINTABLE_LOADCONTRACT = '[ERC721Mintable.loadContract]',
   ERC721MINTABLE_SET_CONTRACT_URI = '[ERC721Mintable.setContractURI]',
-
-  // ERC721MintableRoyaltyExtend
   ERC721MINTABLEROYALTYEXTEND_DEPLOY = '[ERC721MintableRoyaltyExtend.deploy]',
   ERC721MINTABLEROYALTYEXTEND_ADDGASPRICETOOPTIONS = '[ERC721MintableRoyaltyExtend.addGasPriceToOptions]',
   ERC721MINTABLEROYALTYEXTEND_MINT = '[ERC721MintableRoyaltyExtend.mint]',
   ERC721MINTABLEROYALTYEXTEND_MINTWITHROYALTY = '[ERC721MintableRoyaltyExtend.mintWithRoyalty]',
   ERC721MINTABLEROYALTYEXTEND_LOADCONTRACT = '[ERC721MintableRoyaltyExtend.loadContract]',
   ERC721MINTABLEROYALTYEXTEND_SET_CONTRACT_URI = '[ERC721MintableRoyaltyExtend.setContractURI]',
-
-  // ERC721UserMintable
   ERC721USERMINTABLE_DEPLOY = '[ERC721UserMintable.deploy]',
   ERC721USERMINTABLE_ADDGASPRICETOOPTIONS = '[ERC721UserMintable.addGasPriceToOptions]',
   ERC721USERMINTABLE_MINT = '[ERC721UserMintable.mint]',
@@ -66,8 +46,6 @@ export enum ErrorLocation {
   ERC721USERMINTABLE_SET_BASE_URI = '[ERC721UserMintable.setBaseURI]',
   ERC721USERMINTABLE_REVEAL = '[ERC721UserMintable.reveal]',
   ERC721USERMINTABLE_TRANSFER = '[ERC721UserMintable.transfer]',
-
-  // ER1155Mintable
   ERC1155MINTABLE_DEPLOY = '[ERC1155Mintable.deploy]',
   ERC1155MINTABLE_ADDGASPRICETOOPTIONS = '[ERC1155Mintable.addGasPriceToOptions]',
   ERC1155MINTABLE_MINT = '[ERC1155Mintable.mint]',
@@ -79,15 +57,11 @@ export enum ErrorLocation {
   ERC1155_TRANSFER = '[ERC1155Mintable.transfer]',
   ERC1155_TRANSFER_BATCH = '[ERC1155Mintable.transferBatch]',
   ERC1155_SETAPPROVALFORALL = '[ERC1155Mintable.setApprovalForAll]',
-
-  // BaseERC721
   BASEERC721_TRANSFER = '[BaseERC721.transfer]',
   BASEERC721_SETAPPROVALFORALL = '[BaseERC721.setApprovalForAll]',
   BASEERC721_APPROVETRANSFER = '[BaseERC721.approveTransfer]',
   BASEERC721_RENOUNCEOWNERSHIP = '[BaseERC721.renounceOwnership]',
   BASEERC721_SETCONTRACTURI = '[BaseERC721.setContractURI]',
-
-  // HasAccessControl
   HASACCESSCONTROL_ADDADMIN = '[HasAccessControl.addAdmin]',
   HASACCESSCONTROL_RENOUNCEADMIN = '[HasAccessControl.renounceAdmin]',
   HASACCESSCONTROL_REMOVEADMIN = '[HasAccessControl.removeAdmin]',
@@ -97,17 +71,13 @@ export enum ErrorLocation {
   HASACCESSCONTROL_REMOVEMINTER = '[HasAccessControl.removeMinter]',
   HASACCESSCONTROL_ISMINTER = '[HasAccessControl.isMinter]',
   HASACCESSCONTROL_RENOUNCEOWNERSHIP = '[HasAccessControl.renounceOwnership]',
-  // HasRoyalty
   HASROYALTY_SETROYALTIES = '[HasRoyalty.setRoyalties]',
   HASROYALTY_ROYALTYINFO = '[HasRoyalty.royaltyInfo]',
-  // HasRoyaltyExtend
   HASROYALTYEXTEND_SETDEFAULTROYALTY = '[HasRoyaltyExtend.setDefaultRoyalty]',
   HASROYALTYEXTEND_DELETEDEFAULTROYALTY = '[HasRoyaltyExtend.deleteDefaultRoyalty]',
   HASROYALTYEXTEND_SETTOKENROYALTY = '[HasRoyaltyExtend.setTokenRoyalty]',
   HASROYALTYEXTEND_RESETTOKENROYALTY = '[HasRoyaltyExtend.resetTokenRoyalty]',
   HASROYALTYEXTEND_ROYALTYINFO = '[HasRoyaltyExtend.royaltyInfo]',
-
-  // SDK
   SDK_CONSTRUCTOR = '[SDK.constructor]',
   SDK_DEPLOY = '[SDK.deploy]',
   SDK_LOADCONTRACT = '[SDK.loadContract]',
@@ -129,18 +99,13 @@ export enum ErrorLocation {
   SDK_GET_OWNERS_BY_TOKEN_ADDRESS_AND_TOKEN_ID = '[SDK.getOwnersbyTokenAddressAndTokenId]',
   SDK_GET_COLLECTION_BY_WALLET = '[SDK.getCollectionsByWallet]',
   SDK_GET_SEARCH_NFT = '[SDK.searchNfts]',
-
   SDK_GET_LOWEST_TRADE_PRICE = '[SDK.getLowestTradePrice]',
-
-  // Metadata
   METADATA_TOKEN_CREATION = '[Metadata.tokenLevelMetadata]',
   METADATA_CONTRACT_CREATION = '[Metadata.contractLevelMetadata]',
   METADATA_FREE_CREATION = '[Metadata.freeLevelMetadata]',
 }
-
-export enum ErrorMessage {
+export declare enum ErrorMessage {
   invalid_auth_instance = 'Invalid Auth instance.',
-
   no_pk_or_provider = 'PrivateKey or provider missing!',
   no_parameters_supplied = 'No parameters supplied.',
   no_template_type_supplied = 'No template type supplied.',
@@ -162,7 +127,6 @@ export enum ErrorMessage {
   no_provider = 'No provider supplied',
   no_base_url = 'No baseURL supplied',
   no_api_key = 'No API Key supplied',
-
   invalid_contract_address = 'Invalid contract address.',
   invalid_account_address = 'Invalid account address.',
   invalid_public_address = 'Invalid public address.',
@@ -184,23 +148,18 @@ export enum ErrorMessage {
   invalid_block = 'Invalid block number',
   invalid_token_address = 'Invalid token address',
   invalid_search_string = 'Invalid search query.',
-
   warning_contractURI = 'WARNING: The supplied ContractURI is not a link.',
   warning_contractURI_tips = 'WARNING: ContractURI should be a public link to a valid JSON metadata file',
   warning_tokenURI = 'WARNING: The supplied TokenURI is not a link.',
   warning_tokenURI_tips = 'WARNING: TokenURI should be a public link to a valid JSON metadata file',
-
   warning_baseURI = 'WARNING: The supplied BaseURI is not a link.',
   warning_baseURI_tips = 'WARNING: BaseURI should be a public link to a valid JSON metadata file',
-
   contract_already_deployed = 'Contract already deployed.',
   contract_already_loaded = 'Contract already loaded.',
   contract_not_deployed = 'Contract not deployed.',
   contract_not_deployed_or_loaded = 'Contract not deployed or loaded.',
   contract_uri_not_defined = 'ContractURI is not defined.',
-
   fee_must_be_between_0_and_10000 = 'Fee must be between 0 and 10000.',
-
   tokenId_must_be_integer = 'TokenId must be integer.',
   approvalStatus_must_be_boolean = 'approvalStatus must be boolean.',
   only_privateKey_or_provider_required = 'Only privateKey or provider required',
@@ -208,10 +167,8 @@ export enum ErrorMessage {
   chain_not_supported_write_operations = 'Chain not supported for WRITE operations yet.',
   axios_error = 'An Axios error occured',
   ethers_error = 'An Ethers error occured',
-
   no_infura_projectID_supplied = 'No projectId supplied.',
   no_infura_projectSecret_supplied = 'No projectSecret supplied.',
-
   unexisting_file = 'The file does not exists',
   an_error_occured_with_ipfs_api = 'An error occured with infura ipfs api',
   array_should_not_be_empty = 'The Array can not be empty',
@@ -223,72 +180,17 @@ export enum ErrorMessage {
   invalid_block_number = 'Invalid block number.',
   invalid_block_hash = 'Invalid block hash.',
 }
-
-export class Logger {
+export declare class Logger {
   version: string;
-
-  static code = ErrorCode;
-
-  static location = ErrorLocation;
-
-  static message = ErrorMessage;
-
-  constructor(_version: string) {
-    Object.defineProperties(this, {
-      version: {
-        enumerable: true,
-        value: _version,
-        writable: false,
-      },
-    });
-  }
-
-  makeError(message: string, code?: ErrorCode, params?: any): string {
-    const optCode = !code ? Logger.code.RUNTIME : code;
-    const optParams = !params ? {} : params;
-    const messageDetails: Array<string> = [];
-
-    Object.keys(optParams).forEach(key => {
-      const value = optParams[key];
-      try {
-        messageDetails.push(`${key}=${JSON.stringify(value)}`);
-      } catch (error) {
-        messageDetails.push(`${key}=${JSON.stringify(optParams[key].toString())}`);
-      }
-    });
-    messageDetails.push(`code=${optCode}`);
-    messageDetails.push(`version=${this.version}`);
-
-    let errorMsg = message;
-
-    if (messageDetails.length) {
-      errorMsg += ` (${messageDetails.join(', ')})`;
-    }
-    return errorMsg;
-  }
-
-  throwError(message: string, code?: ErrorCode, params?: any): never {
-    throw Error(this.makeError(message, code, params));
-  }
-
-  throwArgumentError(message: string, name: string, value: any, ...params: any): never {
-    const addedParams = params;
-    addedParams[0].argument = name;
-    addedParams[0].value = value;
-    return this.throwError(message, Logger.code.INVALID_ARGUMENT, ...addedParams);
-  }
-
-  throwMissingArgumentError(message?: string, ...params: any): void {
-    return this.throwError(`missing argument: ${message}`, Logger.code.MISSING_ARGUMENT, ...params);
-  }
-
-  throwTooManyArgumentError(message?: string, ...params: any): void {
-    return this.throwError(
-      `too many arguments: ${message}`,
-      Logger.code.UNEXPECTED_ARGUMENT,
-      ...params,
-    );
-  }
+  static code: typeof ErrorCode;
+  static location: typeof ErrorLocation;
+  static message: typeof ErrorMessage;
+  constructor(_version: string);
+  makeError(message: string, code?: ErrorCode, params?: any): string;
+  throwError(message: string, code?: ErrorCode, params?: any): never;
+  throwArgumentError(message: string, name: string, value: any, ...params: any): never;
+  throwMissingArgumentError(message?: string, ...params: any): void;
+  throwTooManyArgumentError(message?: string, ...params: any): void;
 }
-
-export const log = new Logger(version);
+export declare const log: Logger;
+//# sourceMappingURL=index.d.ts.map

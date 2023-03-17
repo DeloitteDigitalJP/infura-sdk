@@ -9,6 +9,7 @@ export const TEMPLATES = {
   ERC721Mintable: 'ERC721Mintable',
   ERC721UserMintable: 'ERC721UserMintable',
   ERC1155Mintable: 'ERC1155Mintable',
+  ERC721MintableRoyaltyExtend: 'ERC721MintableRoyaltyExtend',
 };
 export const GAS_LIMIT = 6000000;
 export const DEFAULT_ADMIN_ROLE =

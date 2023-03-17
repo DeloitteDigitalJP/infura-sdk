@@ -18,11 +18,13 @@ import {
   LoadContractOptions,
 } from './types';
 import { Chains } from '../Auth/availableChains';
+import ERC721MintableRoyaltyExtend from '../ContractTemplates/ERC721MintableRoyaltyExtend';
 
 export const classes = {
   ERC721Mintable,
   ERC721UserMintable,
   ERC1155Mintable,
+  ERC721MintableRoyaltyExtend,
 };
 
 export class SDK {
